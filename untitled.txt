@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Mt. Sinai School</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>Mt. Sinai School</h1>
+    <nav>
+      <a href="#">Home</a>
+      <a href="#about">About</a>
+      <a href="#admission">Admission</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <section id="hero">
+    <h2>Welcome to Mt. Sinai School</h2>
+    <p>Empowering students for a brighter future</p>
+  </section>
+
+  <section id="about">
+    <h2>About Us</h2>
+    <p>Mt. Sinai School is committed to excellence in education, focusing on science and values-based learning.</p>
+  </section>
+
+  <section id="admission">
+    <h2>Admission Form</h2>
+    <form id="admissionForm">
+      <input type="text" placeholder="Full Name" required />
+      <input type="email" placeholder="Email Address" required />
+      <input type="text" placeholder="Class Applying For" required />
+      <button type="submit">Submit</button>
+    </form>
+    <p id="formMessage"></p>
+  </section>
+
+  <section id="contact">
+    <h2>Contact Us</h2>
+    <p>Email: info@mtsinaischool.edu</p>
+    <p>Phone: +123-456-7890</p>
+  </section>
+
+  <footer>
+    <p>© 2025 Mt. Sinai School. All rights reserved.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
+  body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+header {
+  background: #004080;
+  color: white;
+  padding: 20px;
+  text-align: center;
+}
+nav a {
+  margin: 0 15px;
+  color: white;
+  text-decoration: none;
+}
+section {
+  padding: 40px;
+  text-align: center;
+}
+form input, form button {
+  display: block;
+  margin: 10px auto;
+  padding: 10px;
+  width: 80%;
+  max-width: 300px;
+}
+form button {
+  background: #004080;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+form button:hover {
+  background: #002050;
+}
+footer {
+  background: #333;
+  color: white;
+  padding: 10px;
+  text-align: center;
+}
+document.getElementById("admissionForm").addEventListener("submit", function (e) {
+  e.preventDefault();
+  document.getElementById("formMessage").textContent = "Admission form submitted successfully!";
+  this.reset();
+});
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Login - Mt. Sinai School</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="form-container">
+    <h2>Admin Login</h2>
+    <form onsubmit="login(event)">
+      <input type="text" id="username" placeholder="Username" required>
+      <input type="password" id="password" placeholder="Password" required>
+      <button type="submit">Login</button>
+    </form>
+    <p>Don't have an account? <a href="signup.html">Signup</a></p>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Signup - Mt. Sinai School</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="form-container">
+    <h2>Create Admin Account</h2>
+    <form onsubmit="signup(event)">
+      <input type="text" id="newUser" placeholder="New Username" required>
+      <input type="password" id="newPass" placeholder="New Password" required>
+      <button type="submit">Signup</button>
+    </form>
+    <p>Already have an account? <a href="index.html">Login</a></p>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Dashboard - Mt. Sinai School</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>Admin Dashboard</h1>
+
+  <!-- Notifications -->
+  <section>
+    <h2>📢 Notifications</h2>
+    <input type="text" id="notifyText" placeholder="Enter Notification">
+    <button onclick="addNotification()">Send</button>
+    <div id="notificationsList"></div>
+  </section>
+
+  <!-- Attendance -->
+  <section>
+    <h2>📊 Attendance</h2>
+    <input id="stuName" placeholder="Student Name" />
+    <button onclick="markAttendance()">Mark Present</button>
+    <ul id="attendanceList"></ul>
+  </section>
+
+  <!-- Marksheet -->
+  <section>
+    <h2>🧮 Marksheet</h2>
+    <input id="math" type="number" placeholder="Math">
+    <input id="science" type="number" placeholder="Science">
+    <input id="english" type="number" placeholder="English">
+    <button onclick="calculateMarksheet()">Calculate</button>
+    <p id="marksheetOutput"></p>
+  </section>
+
+  <!-- Course Upload -->
+  <section>
+    <h2>📚 Course Upload</h2>
+    <input type="file" id="courseFile">
+    <p id="fileOutput"></p>
+  </section>
+
+  <script src="script.js"></script>
+</body>
+</html>
+body {
+  font-family: Arial, sans-serif;
+  padding: 20px;
+}
+.form-container {
+  max-width: 400px;
+  margin: auto;
+  text-align: center;
+}
+input, button {
+  padding: 10px;
+  margin: 5px;
+  width: 80%;
+}
+section {
+  border: 1px solid #ccc;
+  padding: 15px;
+  margin: 20px 0;
+}
+// Signup
+function signup(e) {
+  e.preventDefault();
+  const user = document.getElementById("newUser").value;
+  const pass = document.getElementById("newPass").value;
+  localStorage.setItem("adminUser", user);
+  localStorage.setItem("adminPass", pass);
+  alert("Signup successful!");
+  window.location = "index.html";
+}
+
+// Login
+function login(e) {
+  e.preventDefault();
+  const user = document.getElementById("username").value;
+  const pass = document.getElementById("password").value;
+  if (user === localStorage.getItem("adminUser") && pass === localStorage.getItem("adminPass")) {
+    window.location = "dashboard.html";
+  } else {
+    alert("Invalid login!");
+  }
+}
+
+// Notifications
+function addNotification() {
+  const msg = document.getElementById("notifyText").value;
+  const list = document.getElementById("notificationsList");
+  const note = document.createElement("div");
+  note.textContent = msg;
+  note.style.border = "1px solid gray";
+  note.style.padding = "5px";
+  note.style.marginTop = "5px";
+  list.appendChild(note);
+  document.getElementById("notifyText").value = "";
+}
+
+// Attendance
+const attendance = [];
+function markAttendance() {
+  const name = document.getElementById("stuName").value;
+  if (name) {
+    attendance.push(name + " - Present");
+    const list = document.getElementById("attendanceList");
+    const item = document.createElement("li");
+    item.textContent = name + " marked present";
+    list.appendChild(item);
+  }
+}
+
+// Marksheet
+function calculateMarksheet() {
+  const m = +document.getElementById("math").value;
+  const s = +document.getElementById("science").value;
+  const e = +document.getElementById("english").value;
+  const total = m + s + e;
+  const avg = total / 3;
+  const grade = avg >= 90 ? 'A+' : avg >= 75 ? 'A' : avg >= 50 ? 'B' : 'C';
+  document.getElementById("marksheetOutput").textContent = `Total: ${total}, Grade: ${grade}`;
+}
+
+// File Upload
+document.getElementById("courseFile")?.addEventListener("change", function () {
+  const file = this.files[0];
+  if (file) {
+    document.getElementById("fileOutput").textContent = `Uploaded: ${file.name}`;
+  }
+});
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Principal Portal - Mt. Sinai School</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <h1>🎓 Principal Portal</h1>
+
+  <!-- Reports Section -->
+  <section>
+    <h2>📊 School Reports</h2>
+    <button onclick="viewReports()">View All Reports</button>
+    <div id="reportsOutput"></div>
+  </section>
+
+  <!-- Approve Courses -->
+  <section>
+    <h2>📚 Approve Uploaded Courses</h2>
+    <button onclick="approveCourse()">Approve Pending Course</button>
+    <p id="courseApprovalOutput"></p>
+  </section>
+
+  <!-- Publish Notice -->
+  <section>
+    <h2>📢 Publish School Notice</h2>
+    <input type="text" id="noticeText" placeholder="Enter notice" />
+    <button onclick="publishNotice()">Publish</button>
+    <div id="noticeBoard"></div>
+  </section>
+
+  <!-- Settings -->
+  <section>
+    <h2>⚙️ School Settings</h2>
+    <input type="text" id="schoolNameInput" placeholder="Change School Name">
+    <button onclick="updateSchoolName()">Update</button>
+    <p id="updatedNameMessage"></p>
+  </section>
+
+  <script src="script.js"></script>
+</body>
+</html>
+function viewReports() {
+  document.getElementById("reportsOutput").innerHTML = `
+    - Total Students: 250 <br>
+    - Present Today: 228 <br>
+    - Average Marks: 78% <br>
+  `;
+}
+
+function approveCourse() {
+  document.getElementById("courseApprovalOutput").textContent =
+    "Last uploaded course has been approved ✅";
+}
+
+function publishNotice() {
+  const notice = document.getElementById("noticeText").value;
+  const board = document.getElementById("noticeBoard");
+  const div = document.createElement("div");
+  div.textContent = "📌 " + notice;
+  board.appendChild(div);
+  document.getElementById("noticeText").value = "";
+}
+
+function updateSchoolName() {
+  const name = document.getElementById("schoolNameInput").value;
+  document.getElementById("updatedNameMessage").textContent =
+    "School name updated to: " + name;
+}
+<a href="principal.html">Go to Principal Portal</a>
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Principal Login - Mt. Sinai School</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="form-container">
+    <h2>Principal Login</h2>
+    <form onsubmit="principalLogin(event)">
+      <input type="text" id="principalUser" placeholder="Username" required>
+      <input type="password" id="principalPass" placeholder="Password" required>
+      <button type="submit">Login</button>
+    </form>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
+const teachers = [];
+
+function addTeacher() {
+  const name = document.getElementById("teacherName").value;
+  const subject = document.getElementById("teacherSubject").value;
+  if (name && subject) {
+    const entry = `${name} - ${subject}`;
+    teachers.push(entry);
+
+    const li = document.createElement("li");
+    li.textContent = entry;
+    document.getElementById("teacherList").appendChild(li);
+
+    // Clear inputs
+    document.getElementById("teacherName").value = "";
+    document.getElementById("teacherSubject").value = "";
+  }
+}
+
+
+  
